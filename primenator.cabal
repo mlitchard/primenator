@@ -26,13 +26,14 @@ source-repository head
 
 library
   default-language:  Haskell2010
+  default-extensions:  NoImplicitPrelude
   ghc-options:       -Wall -Werror -O2
   hs-source-dirs:    src
-  exposed-modules:   Lib
-                   , Generator
+  exposed-modules:   Generator
                    , PriorityQ
 
   build-depends:     base >= 4.8 && < 5
+                   , basic-prelude
 
 executable primenator-exe
   default-language:  Haskell2010
@@ -43,15 +44,24 @@ executable primenator-exe
                    , primenator
 
 test-suite primenator-test
-  type:              exitcode-stdio-1.0
-  default-language:  Haskell2010
+  type:                exitcode-stdio-1.0
+  default-extensions:  NoImplicitPrelude
+  other-extensions:    OverloadedStrings
+  default-language:    Haskell2010
   ghc-options:       -Wall -Werror -O2 -threaded -rtsopts -with-rtsopts=-N
-  hs-source-dirs:    src-test
+  hs-source-dirs:    src, src-test
   main-is:           Main.hs
+  other-modules:     Generator
+                   , PrimeTest
+                   , PriorityQ
+
   build-depends:     base >= 4.8 && < 5
-                   , tasty >= 0.11
-                   , tasty-hunit >= 0.9
-                   , tasty-smallcheck >= 0.8
+                   , arithmoi
+                   , basic-prelude
+                   , hspec
+                   , semigroups
+                   , text
+                   , QuickCheck
                    , primenator
 
 test-suite primenator-doctest

@@ -11,12 +11,12 @@ module Generator
   , sieve
   , spin
   , insertPrime
-  , adjust
   , wheel2357 -- added to export to shut compiler up
   , sieve'    -- added to export to shut compiler up
   ) where
 
 import qualified PriorityQ as PQ
+import BasicPrelude
 
 -- |
 -- PrimeQueue
@@ -29,22 +29,24 @@ type PrimeQueue = PQ.PriorityQ Integer [Integer]
 -- Builds the primes by using a factorization wheel to help the sieve
 --  eliminate compound numbers.
 primes :: [Integer]
-primes = error ("primes not implemented")
+primes = 2 : 3 : 5 : 7 : sieve (spin wheel2357 11)
 
 -- |
 -- sieve
 -- 
 sieve :: [Integer] -> [Integer]
-sieve = error ("sieve not implemented")
+sieve [] = []
+sieve (x:xs) = x : sieve' xs (insertPrime x xs PQ.empty)
 
 -- |
 -- spin
 --
 spin :: [Integer] -> Integer -> [Integer]
-spin = error ("spin not implemented")
+spin [] _ = []
+spin (x:xs) n = n : spin xs (n + x)
 
 wheel2357 :: [Integer]
-wheel2357 = error ("wheel2357 not implemented")
+wheel2357 = cycle $ 2:4:2:4:6:2:6:4:2:4:6:6:2:6:4:2:6:4:6:8:4:2:4:2:4:8:6:4:6:2:4:6:2:6:6:4:2:4:6:2:6:4:2:4:2:10:2:10:[]
 
 -- |
 -- sieve'
@@ -53,15 +55,19 @@ wheel2357 = error ("wheel2357 not implemented")
 -- See the O'Neill paper
 -- for further detail.
 sieve' :: [Integer] -> PrimeQueue -> [Integer]
-sieve' = error ("sieve' not implemented")
+sieve' [] _ = []
+sieve' (x:xs) table
+  | nextComposite <= x = sieve' xs (adjust table)
+  | otherwise          = x : sieve' xs (insertPrime x xs table)
+    where
+      nextComposite = PQ.minKey table
+      adjust table'
+        | n <= x    = adjust (PQ.deleteMinAndInsert n' ns table')
+        | otherwise = table'
+          where
+            (n, n':ns) = PQ.minKeyValue table'
 
-insertPrime :: Integer -> [Integer] -> PrimeQueue
-insertPrime = error ("insertPrime not implemented")
-
--- |
--- adjust
--- guarantees minimum value in priority queue
-adjust :: Integer -> PrimeQueue -> PrimeQueue 
-adjust = error ("adjust not implemented")
+insertPrime :: Integer -> [Integer] -> PrimeQueue -> PrimeQueue
+insertPrime p xs table = PQ.insert (p*p) ((* p) <$> xs) table
 
 

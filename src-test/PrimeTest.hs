@@ -19,4 +19,4 @@ propPrime ub = do
     maxS    = (ub `div` 10) :: Int
 
 verifyPrime :: Int -> Bool
-verifyPrime p = all (== True) $ map isPrime $ take p primes 
+verifyPrime p = all (== True) $ isPrime <$> take p primes 

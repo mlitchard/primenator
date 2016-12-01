@@ -9,6 +9,7 @@
 
 module PriorityQ (PriorityQ, empty, isEmpty, minKeyValue, minKey, minValue,
                   insert, deleteMin, deleteMinAndInsert) where
+import BasicPrelude hiding (insert,empty)
 -- | PriorityQ
 -- Orig implementation used UNPACK pragma.
 -- Below link explains why we don't do that anymore in this use case.
