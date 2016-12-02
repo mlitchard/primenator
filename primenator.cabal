@@ -30,10 +30,12 @@ library
   ghc-options:       -Wall -Werror -O2
   hs-source-dirs:    src
   exposed-modules:   Generator
+                   , Tabulator
                    , PriorityQ
 
   build-depends:     base >= 4.8 && < 5
                    , basic-prelude
+                   , containers
 
 executable primenator-exe
   default-language:  Haskell2010
@@ -58,6 +60,7 @@ test-suite primenator-test
   build-depends:     base >= 4.8 && < 5
                    , arithmoi
                    , basic-prelude
+                   , containers
                    , hspec
                    , semigroups
                    , text

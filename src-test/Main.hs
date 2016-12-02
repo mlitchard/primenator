@@ -4,7 +4,7 @@ import BasicPrelude
 import Test.Hspec (hspec)
 
 import PrimeTest
-
+import TabulatorTest
 
 -- |
 -- Two sets of tests.
@@ -14,8 +14,8 @@ import PrimeTest
 main :: IO ()
 main = do
   hspec $ propPrime upper_bound
--- hspec unitTabulator
+  hspec $ propTabulator upper_bound 
 
 upper_bound :: Int
-upper_bound = 10000
+upper_bound = 100000
 
