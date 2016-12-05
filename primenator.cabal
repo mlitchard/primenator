@@ -36,6 +36,7 @@ library
   build-depends:     base >= 4.8 && < 5
                    , basic-prelude
                    , containers
+                   , parallel
 
 executable primenator-exe
   default-language:  Haskell2010
@@ -50,18 +51,21 @@ test-suite primenator-test
   default-extensions:  NoImplicitPrelude
   other-extensions:    OverloadedStrings
   default-language:    Haskell2010
-  ghc-options:       -Wall -Werror -O2 -threaded -rtsopts -with-rtsopts=-N
+  ghc-options:       -Wall  -O2 -threaded -rtsopts -with-rtsopts=-N
   hs-source-dirs:    src, src-test
   main-is:           Main.hs
   other-modules:     Generator
                    , PrimeTest
                    , PriorityQ
+                   , Tabulator
+                   , TabulatorTest
 
   build-depends:     base >= 4.8 && < 5
                    , arithmoi
                    , basic-prelude
                    , containers
                    , hspec
+                   , parallel
                    , semigroups
                    , text
                    , QuickCheck

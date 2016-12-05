@@ -1,3 +1,5 @@
 
 main :: IO ()
-main = error("main unimplemented")
+main = do
+  input <- getArgs
+  putStrLn $ tabWrapper input
