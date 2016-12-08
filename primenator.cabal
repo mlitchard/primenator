@@ -27,23 +27,35 @@ source-repository head
 library
   default-language:  Haskell2010
   default-extensions:  NoImplicitPrelude
-  ghc-options:       -Wall -Werror -O2
+  ghc-options:       -Wall -O2
   hs-source-dirs:    src
   exposed-modules:   Generator
                    , Tabulator
+                   , TabWrapper
                    , PriorityQ
+--                   , Input
+--                   , Output
+--                   , Types
+  other-modules:     Input
+                   , Output
+                   , Types
 
   build-depends:     base >= 4.8 && < 5
                    , basic-prelude
                    , containers
+                   , MissingH
+                   , mtl
+                   , text
                    , parallel
-
+--
 executable primenator-exe
   default-language:  Haskell2010
+  default-extensions:  NoImplicitPrelude
   ghc-options:       -Wall -Werror -O2 -threaded -rtsopts -with-rtsopts=-N
   hs-source-dirs:    src-exe
   main-is:           Main.hs
   build-depends:     base >= 4.8 && < 5
+                   , basic-prelude
                    , primenator
 
 test-suite primenator-test
@@ -59,6 +71,7 @@ test-suite primenator-test
                    , PriorityQ
                    , Tabulator
                    , TabulatorTest
+                   , Types
 
   build-depends:     base >= 4.8 && < 5
                    , arithmoi

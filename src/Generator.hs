@@ -18,17 +18,13 @@ module Generator
 import qualified PriorityQ as PQ
 import BasicPrelude
 
--- |
--- PrimeQueue
--- A type synonym for the priority queue used to describe the sequence of primes
-type PrimeQueue = PQ.PriorityQ Integer [Integer]
-
+import Types (Prime,PrimeQueue)
 -- |
 -- primes
 -- The interface to the prime number generation machinery.
 -- Builds the primes by using a factorization wheel to help the sieve
 --  eliminate compound numbers.
-primes :: [Integer]
+primes :: [Prime]
 primes = 2 : 3 : 5 : 7 : sieve (spin wheel2357 11)
 
 -- |

@@ -1,5 +1,7 @@
+import BasicPrelude
 
+-- import TabWrapper
 main :: IO ()
-main = do
-  input <- getArgs
-  putStrLn $ tabWrapper input
+main = error ("main undefined")
+--  input <- getArgs
+--  mapM_ putStrLn $ tabWrapper input
