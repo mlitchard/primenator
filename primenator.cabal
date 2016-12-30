@@ -5,11 +5,11 @@ description:         Please see README.md
 
 license:             ISC
 license-file:        LICENSE
-author:              TODO:<Author name here>
-maintainer:          TODO:<example@example.com>
-copyright:           © 2016 TODO:<Author name here>
-homepage:            https://github.com/TODO:<githubuser>/primenator
-bug-reports:         https://github.com/TODO:<githubuser>/primenator/issues
+author:              Michael
+maintainer:          litchard <dot> michael <at> gmail 
+copyright:           © 2016 Michael Litchard
+homepage:            https://github.com/mlitchard/primenator
+bug-reports:         https://github.com/mlitchard/primenator/issues
 
 category:            Test
 build-type:          Simple

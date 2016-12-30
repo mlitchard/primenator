@@ -1,3 +1,4 @@
+[![BuildStatus](https://travis-ci.org/mlitchard/primenator.svg?branch=master)](https://travis-ci.org/mlitchard/primenator)
 primenator
 =============
 This is a command-line tool to generate multiplcation tables
