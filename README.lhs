@@ -18,4 +18,4 @@ main :: IO ()
 main = fakeGetArgs <&> toOutputFormat >>= printout
 
 fakeGetArgs :: IO [Text]
-fakeGetArgs = ["10"]
+fakeGetArgs = return ["10"]

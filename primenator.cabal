@@ -97,5 +97,13 @@ Test-Suite readme
   default-extensions:  NoImplicitPrelude, OverloadedStrings
   default-language:    Haskell2010
   ghc-options:   -pgmL markdown-unlit
+  Build-depends:  base >=4.8 && < 5
+                , basic-prelude
+                , containers
+                , markdown-unlit
+                , microlens
+                , MissingH
+                , primenator
+                , text
   other-modules:  Output
                 , Tabulator
