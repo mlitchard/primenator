@@ -1,21 +1,16 @@
 module PrimeTest (propPrime) where
 
-import BasicPrelude
-import Test.Hspec
-import Test.Hspec.QuickCheck
-import Test.QuickCheck
-import Generator
+import PropImports 
 import Math.NumberTheory.Primes.Testing (isPrime)
 
 propPrime :: Int -> Spec
-propPrime ub = do
+propPrime ub = 
   describe "QuickCheck testing prime Generator" $
     modifyMaxSuccess (const maxS)        $
     prop propMsg                         $
     forAll (choose (10,ub)) verifyPrime
   where
-    propMsg = "Lowerbound: 10 Upperbound: " <> showUB
-    showUB  = show ub
+    propMsg = "Lowerbound: 10 Upperbound: " <> show ub
     maxS    = (ub `div` 1000) :: Int
 
 verifyPrime :: Int -> Bool

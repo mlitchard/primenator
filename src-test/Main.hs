@@ -1,23 +1,41 @@
+-- | 
+-- Module: src-test/Main.hs 
+-- There are three property tests.
+-- propPrime : verifies the prime number generator generates prime numbers.
+-- propTabulator : verifies the tabulator is producing a multiplication table.
+-- propFormatter : verifies the formatted data is accurately produced from 
+-- tabulator.
+--
+-- propPrime checks against known-to-be-accurate isPrime function.
+-- both propTabulator and propFormatter reconstructs input from output.
+--
+-- There is one unit test
+-- unitInput verifies error handling works correctly.
 module Main (main) where
 
 import BasicPrelude
 import Test.Hspec (hspec)
 
--- import PrimeTest
+-- 
+import PrimeTest
 import TabulatorTest
+import FormatTest
 
--- |
--- Two sets of tests.
--- PrimeTest is a property test for the prime generator
--- TableTest is a property test for the tabulator
+import ErrorTest
 
 main :: IO ()
 main = do
-  hspec $ propPrime upper_bound
-  hspec $ propTabulator t_upper_bound 
+  hspec unitInput
+  hspec $ propPrime pUpperBound
+  hspec $ propTabulator tUpperBound
+  hspec $ propFormatter fUpperBound
+  hspec unitInput
 
-p_upper_bound :: Int
-p_upper_bound = 100000
+pUpperBound :: Int
+pUpperBound = 100000
 
-t_upper_bound :: Int
-t_upper_bound = 1000
+tUpperBound :: Int
+tUpperBound = 1000
+
+fUpperBound :: Int
+fUpperBound = 1000

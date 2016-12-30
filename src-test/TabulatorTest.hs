@@ -1,26 +1,36 @@
-module TabulatorTest where
+module TabulatorTest (propTabulator)where
 
-import BasicPrelude
+import BasicPrelude hiding (zip)
+import Test.Hspec (Spec,describe)
+import Test.Hspec.QuickCheck (modifyMaxSuccess,prop)
+import Test.QuickCheck (forAll,choose)
+
+import Data.Sequence (zip,fromList)
+import Data.Foldable (toList)
+import BasicPrelude hiding (zip)
+
+import Types
 import Tabulator
 import Generator
-import Data.Map.Strict hiding (map)
-import Test.Hspec
-import Test.Hspec.QuickCheck
-import Test.QuickCheck
 
 propTabulator :: Int -> Spec
-propTabulator ub = do
+propTabulator ub = 
   describe "QuickCheck testing muliplication tabulator" $
     modifyMaxSuccess (const maxS) $
     prop propMsg                  $
     forAll (choose (10,ub)) verifyTabulation
     where
-      propMsg = "Lowerbound: 10 Upperbound: " <> showUB
-      showUB  = show ub
+      propMsg = "Lowerbound: 10 Upperbound: " <> show ub
       maxS    = (ub `div` 10) :: Int
 
 verifyTabulation :: Int -> Bool
-verifyTabulation ub = all (== True) $ concat $ map tabTest tabulated
+verifyTabulation ub = all (== True) $ concatMap tabTest tabulated
   where
-    tabTest (x,y) = map (\(a,b) -> (a `div` x == b) == True) y
-    tabulated = toList $ tabulator $ take ub [1 ..] 
+    tabTest :: (Prime, Seq Product) -> [Bool]
+    tabTest (prime,products) = 
+      toList $ map (\(a,b) -> (a `div` prime == b) ) paired
+      where
+        paired = zip products (multipliers ub)
+    tabulated = toList $ tabulator $ multipliers ub 
+
+multipliers ub = fromList $ take ub [1 .. ]

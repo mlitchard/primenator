@@ -1,7 +1,12 @@
 import BasicPrelude
 
--- import TabWrapper
+import Lens.Micro
+import TabWrapper
+import Output
+
+-- |
+-- getArgs :: IO ([Text])
+-- getArgs <&> toOutputFormat :: IO OutputFormat
+-- getArgs <&> toOutputFormat >>= prettyPrintTable :: IO ()
 main :: IO ()
-main = error ("main undefined")
---  input <- getArgs
---  mapM_ putStrLn $ tabWrapper input
+main =  getArgs <&> toOutputFormat >>= printout

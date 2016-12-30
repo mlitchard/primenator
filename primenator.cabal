@@ -29,15 +29,13 @@ library
   default-extensions:  NoImplicitPrelude
   ghc-options:       -Wall -O2
   hs-source-dirs:    src
-  exposed-modules:   Generator
-                   , Tabulator
+  exposed-modules:   Output  
                    , TabWrapper
+  other-modules:     Error 
+                   , Generator 
+                   , Input
                    , PriorityQ
---                   , Input
---                   , Output
---                   , Types
-  other-modules:     Input
-                   , Output
+                   , Tabulator
                    , Types
 
   build-depends:     base >= 4.8 && < 5
@@ -46,7 +44,6 @@ library
                    , MissingH
                    , mtl
                    , text
-                   , parallel
 --
 executable primenator-exe
   default-language:  Haskell2010
@@ -56,6 +53,8 @@ executable primenator-exe
   main-is:           Main.hs
   build-depends:     base >= 4.8 && < 5
                    , basic-prelude
+                   , containers
+                   , microlens
                    , primenator
 
 test-suite primenator-test
@@ -71,37 +70,31 @@ test-suite primenator-test
                    , PriorityQ
                    , Tabulator
                    , TabulatorTest
+                   , FormatTest
+                   , PropImports
+                   , ErrorTest
+                   , Input
                    , Types
+                   , Output
 
   build-depends:     base >= 4.8 && < 5
                    , arithmoi
                    , basic-prelude
                    , containers
                    , hspec
+                   , MissingH
                    , parallel
                    , semigroups
                    , text
                    , QuickCheck
                    , primenator
 
-test-suite primenator-doctest
-  type:              exitcode-stdio-1.0
-  default-language:  Haskell2010
-  ghc-options:       -Wall -Werror -O2 -threaded -rtsopts -with-rtsopts=-N
-  hs-source-dirs:    src-doctest
-  main-is:           Main.hs
-  build-depends:     base >= 4.8 && < 5
-                   , doctest >=0.10
-                   , Glob >= 0.7
-                   , QuickCheck >= 2.5
-                   , primenator
-
-benchmark primenator-benchmark
-  type:              exitcode-stdio-1.0
-  default-language:  Haskell2010
-  ghc-options:       -Wall -Werror -O2 -threaded -rtsopts -with-rtsopts=-N
-  hs-source-dirs:    src-benchmark
-  main-is:           Main.hs
-  build-depends:     base >= 4.8 && < 5
-                   , criterion >= 1.1
-                   , primenator
+Test-Suite readme
+  type:           exitcode-stdio-1.0
+  -- We have a symlink: README.lhs -> README.md
+  main-is:       README.lhs
+  default-extensions:  NoImplicitPrelude, OverloadedStrings
+  default-language:    Haskell2010
+  ghc-options:   -pgmL markdown-unlit
+  other-modules:  Output
+                , Tabulator
