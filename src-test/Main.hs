@@ -38,4 +38,4 @@ tUpperBound :: Int
 tUpperBound = 1000
 
 fUpperBound :: Int
-fUpperBound = 1000
+fUpperBound = 100
