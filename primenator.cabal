@@ -105,5 +105,11 @@ Test-Suite readme
                 , MissingH
                 , primenator
                 , text
-  other-modules:  Output
+  other-modules:  Error
+                , Generator
+                , Input
+                , Output
+                , PriorityQ
+                , TabWrapper
                 , Tabulator
+                , Types

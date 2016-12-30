@@ -1,6 +1,6 @@
 module TabulatorTest (propTabulator)where
 
-import BasicPrelude hiding (zip)
+-- import BasicPrelude hiding (zip)
 import Test.Hspec (Spec,describe)
 import Test.Hspec.QuickCheck (modifyMaxSuccess,prop)
 import Test.QuickCheck (forAll,choose)
@@ -11,7 +11,7 @@ import BasicPrelude hiding (zip)
 
 import Types
 import Tabulator
-import Generator
+-- import Generator
 
 propTabulator :: Int -> Spec
 propTabulator ub = 
@@ -33,4 +33,5 @@ verifyTabulation ub = all (== True) $ concatMap tabTest tabulated
         paired = zip products (multipliers ub)
     tabulated = toList $ tabulator $ multipliers ub 
 
+multipliers :: Int -> Seq Integer
 multipliers ub = fromList $ take ub [1 .. ]
