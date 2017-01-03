@@ -13,14 +13,20 @@ The priority queue code is from [this collection](http://www.cs.hmc.edu/~oneill/
 Your environment may require the use of sudo for the `docker` commands.
 
 `cd $HOME`
+
 `git clone https://github.com/mlitchard/primenator.git`
+
 `cd primenator`
+
 `export INPUT=10`
+
 `docker build -t ${USER}:primenator .` 
+
 `docker run --rm --name run_primenator_7 -it mlitchard:primenator ${INPUT}`
 
 #Manual Testing
 `docker run --entrypoint="/bin/bash" --rm --name run_primenator_7 -it mlitchard:primenator`
+
 `stack test`
 
 ## * Docker commands may require sudo
