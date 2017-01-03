@@ -22,10 +22,10 @@ Your environment may require the use of sudo for the `docker` commands.
 
 `docker build -t ${USER}:primenator .` 
 
-`docker run --rm --name run_primenator_7 -it mlitchard:primenator ${INPUT}`
+`docker run --rm --name run_primenator_7 -it ${USER}:primenator ${INPUT}`
 
 #Manual Testing
-`docker run --entrypoint="/bin/bash" --rm --name run_primenator_7 -it mlitchard:primenator`
+`docker run --entrypoint="/bin/bash" --rm --name run_primenator -it ${USER}:primenator`
 
 `stack test`
 
