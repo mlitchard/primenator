@@ -10,7 +10,7 @@ This allowed for a right-side append cost of O(1), which was nice.
 The priority queue code is from [this collection](http://www.cs.hmc.edu/~oneill/code/haskell-primes.zip), with slight modification by me.
 
 #Usage :
-Your environment may require the use of sudo for the `docker` commands.
+## Docker commands may require sudo
 
 `cd $HOME`
 
@@ -29,7 +29,8 @@ Your environment may require the use of sudo for the `docker` commands.
 
 `stack test`
 
-## * Docker commands may require sudo
+The code below is for `stack test`.
+
 ~~~ {.haskell}
 module Main where
 {-# LANGUAGE OverloadedStrings #-}
