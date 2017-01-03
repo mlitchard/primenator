@@ -29,7 +29,6 @@ main = do
   hspec $ propPrime pUpperBound
   hspec $ propTabulator tUpperBound
   hspec $ propFormatter fUpperBound
-  hspec unitInput
 
 pUpperBound :: Int
 pUpperBound = 100000
