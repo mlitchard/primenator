@@ -22,7 +22,7 @@ The priority queue code is from [this collection](http://www.cs.hmc.edu/~oneill/
 
 `docker build -t ${USER}:primenator .` 
 
-`docker run --rm --name run_primenator_7 -it ${USER}:primenator ${INPUT}`
+`docker run --rm --name run_primenator -it ${USER}:primenator ${INPUT}`
 
 #Manual Testing
 `docker run --entrypoint="/bin/bash" --rm --name run_primenator -it ${USER}:primenator`
