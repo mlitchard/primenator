@@ -36,7 +36,7 @@ module Main where
 {-# LANGUAGE OverloadedStrings #-}
 import BasicPrelude
 
-import Lens.Micro
+import Lens.Micro ((<&>))
 import TabWrapper
 import Output
 
