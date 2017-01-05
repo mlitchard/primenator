@@ -11,7 +11,7 @@ import Types (Prime,Product,MTable)
 
 -- | tabulator
 -- tabulator multiplies every prime with each prime in the list.
--- stores in strict Map with each prime being keyed to the results.
+-- stores in a Sequence of the prime paired with another Sequence of products
 tabulator :: Seq Prime -> MTable
 tabulator primes = foldr tabulator' empty primes
   where tabulator' prime mtable = (prime, products) <| mtable

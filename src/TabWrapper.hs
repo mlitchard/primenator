@@ -18,7 +18,7 @@ import Error
 -- toOutputFormat
 -- tabulation driver
 toOutputFormat :: [Text] -> OutputFormat
-toOutputFormat input = either mungeError primenator $ configurator input
+toOutputFormat input = either formatError primenator $ configurator input
 
 -- primenator
 -- formats prime number generation for multiplication table
@@ -26,9 +26,6 @@ primenator :: Int -> OutputFormat
 primenator bound = formatTable (tabulator primenator')
   where
     primenator' = takeFromList bound primes
-
-mungeError :: PrimeError -> OutputFormat
-mungeError = formatError
 
 -- | 
 -- takeFromList
@@ -38,6 +35,11 @@ takeFromList n xs
   | n > 0     =  unsafeTakeFromList n xs
   | otherwise = empty
 
+-- |
+-- unsafeTakeFromList
+-- Comment on the BangPattern usage: It is a annotation to tell the compiler,
+-- that this function should behave strict in its first argument.
+-- http://stackoverflow.com/questions/41229489/whats-going-on-in-this-pattern-match
 unsafeTakeFromList :: Int -> [a] -> Seq a
 unsafeTakeFromList !_ []    = empty
 unsafeTakeFromList 1 (x:_)  = singleton x

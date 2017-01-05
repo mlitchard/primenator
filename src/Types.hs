@@ -31,10 +31,11 @@ data PrimeError
 -- |
 -- PrimeQueue
 -- A type synonym for the priority queue used to describe the sequence of primes
-type PrimeQueue = PriorityQ Prime [Prime]
+type PrimeQueue = PriorityQ Composite [Prime]
 
+type Composite  = Integer
 type Prime      = Integer
-type Product    = Prime
+type Product    = Integer
 type Multiplier = Prime
 type Row        = (Prime, Seq Product)
 type MTable     = Seq Row
